@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Text, View, Image, StyleSheet, SafeAreaView, Platform, StatusBar, Dimensions } from "react-native";
 
-import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import { RFValue } from "react-native-responsive-fontsize";
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
 
 let customFonts = {
 	"Bubblegum-Sans": require("../assets/fonts/BubblegumSans-Regular.ttf")
@@ -27,9 +29,8 @@ export default class CreateStory extends Component {
 	}
 
 	render() {
-		if (!this.state.fontsLoaded) {
-			return <AppLoading />
-		} else {
+		if (this.state.fontsLoaded) {
+			SplashScreen.hideAsync();
 			return(
 			<View style={styles.container}>
 				<SafeAreaView style={styles.droidSafeArea} />
